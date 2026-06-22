@@ -3,7 +3,8 @@
 :root {
   --bg-color: #fdf8f1;
   --primary-color: #755e22;
-  --accent-color: #c4a15e; /* Golden tan for the 4th card */
+  --accent-color: #c4a15e;
+  /* Golden tan for the 4th card */
   --text-dark: #2c2c2c;
   --text-muted: #8b7e58;
   --input-border: #e6e0d5;
@@ -15,6 +16,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+button,
+textarea,
+div {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 body {
@@ -58,7 +75,7 @@ body {
   height: 100%;
   z-index: 0;
   background-color: var(--bg-color);
-  background: 
+  background:
     radial-gradient(circle at 50% 50%, rgba(139, 126, 88, 0.08) 0%, transparent 60%),
     radial-gradient(circle at 100% 0%, rgba(139, 126, 88, 0.05) 0%, transparent 40%),
     radial-gradient(circle at 0% 100%, rgba(139, 126, 88, 0.05) 0%, transparent 40%);
@@ -73,13 +90,11 @@ body {
   width: 150vw;
   height: 150vw;
   border-radius: 50%;
-  background: repeating-radial-gradient(
-    circle at center,
-    rgba(139, 126, 88, 0.01) 0,
-    rgba(139, 126, 88, 0.01) 2px,
-    transparent 2px,
-    transparent 100px
-  );
+  background: repeating-radial-gradient(circle at center,
+      rgba(139, 126, 88, 0.01) 0,
+      rgba(139, 126, 88, 0.01) 2px,
+      transparent 2px,
+      transparent 100px);
   pointer-events: none;
   opacity: 0.5;
 }
@@ -113,46 +128,57 @@ body {
   .auth-container {
     padding: 20px 20px;
   }
+
   .main-title {
     font-size: 26px;
     margin-bottom: 8px;
   }
+
   .retreat-subtitle {
     font-size: 12px;
     margin-bottom: 10px;
   }
+
   .navbar {
     top: 12px;
     right: 12px;
     gap: 10px;
     padding: 5px 8px;
   }
+
   .navbar .nav-icon {
     width: 20px;
     height: 20px;
   }
+
   .header {
     margin-top: 56px;
   }
+
   .title-line {
     margin: 12px auto 0;
   }
+
   .scripture {
     font-size: 13px;
     line-height: 1.6;
     margin: 0 auto 8px;
   }
+
   .scripture-ref {
     margin-bottom: 12px;
   }
+
   .auth-form {
     gap: 20px;
   }
+
   .submit-btn {
     padding: 12px 24px;
     font-size: 14px;
     margin-top: 8px;
   }
+
   .footer {
     margin-bottom: 20px;
     font-size: 10px;
@@ -267,7 +293,7 @@ body {
   right: 20px;
   display: flex;
   gap: 16px;
-  z-index: 100;
+  z-index: 9999;
   padding: 8px 12px;
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.6);
@@ -292,7 +318,8 @@ body {
   gap: 24px;
   width: 100%;
   max-width: 800px;
-  margin: 16px auto 0; /* Significant reduction to move buttons closer to title */
+  margin: 16px auto 0;
+  /* Significant reduction to move buttons closer to title */
 }
 
 .menu-card {
@@ -338,9 +365,11 @@ body {
     max-width: 280px;
     margin: 8px auto 0;
   }
+
   .menu-card {
     border-radius: 18px;
   }
+
   .menu-card .icon {
     width: 36px !important;
     height: 36px !important;
@@ -351,6 +380,7 @@ body {
   .main-title {
     font-size: 28px;
   }
+
   .scripture {
     font-size: 14px;
   }
@@ -373,8 +403,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-content {
@@ -387,14 +422,22 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center; /* Ensures children are centered */
+  align-items: center;
+  /* Ensures children are centered */
   text-align: center;
   animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .modal-close {
@@ -493,6 +536,7 @@ body {
   justify-content: space-between;
   align-items: center;
   z-index: 100;
+  pointer-events: none;
 }
 
 .top-nav-right {
@@ -503,6 +547,7 @@ body {
 .nav-back {
   cursor: pointer;
   color: var(--text-muted);
+  pointer-events: auto;
 }
 
 .prayer-header {
@@ -673,6 +718,7 @@ body {
   background-color: var(--card-bg);
   border-color: var(--text-muted);
 }
+
 .prayer-card .actions:hover,
 .heart-filled {
   color: #e63946 !important;
@@ -862,7 +908,7 @@ body {
 }
 
 .ai-header h1 {
-  font-family: 'Noto Serif KR', serif;
+  font-family: var(--font-main);
   font-size: 28px;
   font-weight: 700;
   color: var(--primary-color);
@@ -1002,10 +1048,374 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ppt-theater-container {
+  width: 100%;
+  max-width: 900px !important;
+  margin: 0 auto;
+  padding: 100px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  background-color: #faf6f0;
+  /* Light warm cream background from image */
+}
+
+/* Header bar matching the mockup */
+.theater-header-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #faf6f0;
+  border-bottom: 1px solid rgba(117, 94, 34, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 0 20px;
+}
+
+.theater-header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #755e22;
+  letter-spacing: 0.5px;
+}
+
+.theater-header-back {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  color: #755e22;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+}
+
+.ppt-card {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+}
+
+.ppt-phase-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #b4925a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: -10px;
+}
+
+.ppt-title {
+  font-family: var(--font-main);
+  font-size: 38px;
+  /* Title size from image */
+  font-weight: 800;
+  color: #2b2315;
+  /* Dark charcoal/brown text from image */
+  line-height: 1.3;
+  margin: 10px 0 0;
+  letter-spacing: -1px;
+}
+
+.ppt-divider {
+  width: 60px;
+  height: 3px;
+  background-color: #b4925a;
+  /* Gold divider bar */
+  margin: 12px auto 20px;
+  border-radius: 2px;
+}
+
+.ppt-subtitle {
+  font-family: var(--font-main);
+  font-size: 18px;
+  color: #615545;
+  line-height: 1.6;
+  font-style: italic;
+  white-space: pre-line;
+  margin-top: 10px;
+}
+
+/* Double-bordered Circular Timer from Mockup */
+.ppt-timer-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 3px double #b4925a;
+  /* Double border styled */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 6px 20px rgba(180, 146, 90, 0.08);
+}
+
+.ppt-timer-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: #755e22;
+  line-height: 1;
+}
+
+.ppt-timer-unit {
+  font-size: 11px;
+  font-weight: 700;
+  color: #755e22;
+  margin-top: 1px;
+}
+
+/* Grid layout for 3 columns side-by-side */
+.ppt-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Square Card Button style */
+.ppt-card-btn {
+  position: relative;
+  background: #ffffff;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  /* Rounded corners from image */
+  padding: 45px 15px;
+  aspect-ratio: 1.1 / 1;
+  /* Slightly wider than tall */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(117, 94, 34, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  overflow: hidden;
+}
+
+.ppt-card-btn:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(117, 94, 34, 0.08);
+}
+
+.ppt-card-btn.selected {
+  border-color: #b4925a;
+  /* Gold border for selected card */
+  box-shadow: 0 15px 35px rgba(180, 146, 90, 0.12);
+}
+
+.ppt-card-btn-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ppt-card-btn-text {
+  font-family: var(--font-main);
+  font-size: 26px;
+  font-weight: 800;
+  color: #a2864c;
+  /* Brownish-gold color for options */
+  text-align: center;
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
+.ppt-card-btn.selected .ppt-card-btn-text {
+  color: #755e22;
+}
+
+.ppt-card-progress-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(117, 94, 34, 0.28);
+  z-index: 1;
+  transition: height 0.8s cubic-bezier(0.1, 0.8, 0.2, 1);
+  pointer-events: none;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.ppt-card-btn.selected .ppt-card-progress-fill {
+  background: rgba(117, 94, 34, 0.38);
+}
+
+/* Vote count pill badge below options */
+.ppt-vote-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #ede6d6;
+  /* Beige pill background */
+  color: #755e22;
+  /* Brown-gold text */
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 30px;
+  letter-spacing: -0.2px;
+}
+
+.ppt-total-badge {
+  font-size: 16px;
+  font-weight: 700;
+  color: #755e22;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(180, 146, 90, 0.25);
+  padding: 10px 24px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-top: 24px;
+}
+
+/* Action button at the bottom */
+.ppt-btn-solid {
+  background-color: #755e22;
+  /* Dark olive-brown solid button */
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 48px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 18px rgba(117, 94, 34, 0.15);
+}
+
+.ppt-btn-solid:hover {
+  background-color: #5d4a1b;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(117, 94, 34, 0.22);
+}
+
+@media (max-width: 768px) {
+  .ppt-options-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 400px;
+  }
+
+  .ppt-card-btn {
+    aspect-ratio: auto;
+    padding: 30px 15px;
+  }
+
+  .ppt-title {
+    font-size: 30px;
+  }
+}
+
+/* Custom scrollbar for modal popups */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(117, 94, 34, 0.2);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(117, 94, 34, 0.4);
+}
+
+.review-card-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.review-card-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(117, 94, 34, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(117, 94, 34, 0.08) !important;
+}
+
+.review-card-hover:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 769px) {
+  /* Increase desktop font sizes */
+  body {
+    font-size: 18px;
+  }
+  .main-title {
+    font-size: 46px;
+  }
+  .scripture {
+    font-size: 18px;
+    max-width: 450px;
+  }
+  .scripture-ref {
+    font-size: 14px;
+  }
+  .retreat-subtitle {
+    font-size: 16px;
+  }
+  .ppt-title {
+    font-size: 48px !important;
+  }
+  .ppt-card-btn-text {
+    font-size: 32px !important;
+  }
+  .ppt-vote-badge {
+    font-size: 16px !important;
+    padding: 8px 20px !important;
+  }
+  .ppt-subtitle {
+    font-size: 20px !important;
+  }
+  .menu-card {
+    border-radius: 32px;
+  }
+  .menu-card .icon {
+    width: 48px !important;
+    height: 48px !important;
+  }
 }
