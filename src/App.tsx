@@ -2083,63 +2083,138 @@ function App() {
                   </div>
                 )}
 
-                {/* Grid Options for Stage 1 */}
-                <div className="ppt-options-grid" style={{
-                  filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
-                  transition: 'filter 0.5s'
-                }}>
-                  {stage1Options.map((opt) => {
-                    const stats = getOptionStats1(opt.id);
-                    const isSelected = myVote1Option === opt.id;
-                    const canVote = isVotingActive && userId !== "박재형_940721";
-
-                    return (
-                      <button
-                        key={opt.id}
-                        onClick={() => canVote && handleVoteStage1(opt.id)}
-                        disabled={!canVote && userId !== "박재형_940721"}
-                        className={`ppt-card-btn ${isSelected ? 'selected' : ''}`}
-                      >
-                        <div className="ppt-card-btn-content">
-                          <span className="ppt-card-btn-text">{opt.text}</span>
-                          {(userId === "박재형_940721" || isTimerExpired) && (
-                            <span className="ppt-vote-badge">{stats.votes}표 ({stats.pct}%)</span>
-                          )}
-                        </div>
-                        {(userId === "박재형_940721" || isTimerExpired) && (
+                {userId === "박재형_940721" ? (
+                  // ADMIN VIEW: Large cards with solid fill, same style as Stage 6/7/8
+                  <div>
+                    <div style={{ 
+                      display: 'flex', 
+                      gap: '20px', 
+                      width: '100%', 
+                      maxWidth: '850px', 
+                      margin: '30px auto',
+                      filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                      transition: 'filter 0.5s'
+                    }}>
+                      {stage1Options.map((opt) => {
+                        const stats = getOptionStats1(opt.id);
+                        return (
                           <div
-                            className="ppt-card-progress-fill"
-                            style={{ height: `${stats.pct}%` }}
-                          />
+                            key={opt.id}
+                            style={{
+                              background: '#ffffff',
+                              borderRadius: '20px',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              position: 'relative',
+                              boxShadow: '0 8px 24px rgba(117, 94, 34, 0.04)',
+                              border: '1px solid rgba(117, 94, 34, 0.1)',
+                              flex: 1,
+                              overflow: 'hidden'
+                            }}
+                          >
+                            {/* Fill Background */}
+                            <div
+                              className="ppt-card-progress-fill"
+                              style={{ 
+                                height: `${stats.pct}%`,
+                                position: 'absolute',
+                                bottom: 0, left: 0, width: '100%',
+                                zIndex: 1,
+                                transition: 'height 0.8s cubic-bezier(0.1, 0.8, 0.2, 1)'
+                              }}
+                            />
+                            {/* Card Content */}
+                            <div style={{ position: 'relative', zIndex: 2, padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                              <div style={{ fontSize: '38px', fontWeight: '900', color: stats.pct > 50 ? '#ffffff' : '#755e22', marginBottom: '10px', transition: 'color 0.5s' }}>
+                                {opt.text}
+                              </div>
+                              <div style={{ fontSize: '18px', fontWeight: '700', color: stats.pct > 50 ? '#ffffff' : '#2b2315', marginBottom: '20px', transition: 'color 0.5s' }}>
+                                {stats.votes}명 선택
+                              </div>
+                              <div style={{ fontSize: '24px', color: stats.pct > 50 ? '#f0e9d9' : '#a2864c', fontWeight: '800', transition: 'color 0.5s' }}>
+                                {stats.pct}%
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div className="ppt-total-badge">
+                      참여 관객: {totalVotes1}명 / 실시간 투표 집계 중
+                    </div>
+
+                    {/* Admin Controllers */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '40px', borderTop: '1px dashed rgba(117, 94, 34, 0.2)', paddingTop: '30px', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', gap: '12px', width: '100%', maxWidth: '500px' }}>
+                        {!isTimerRunning && (
+                          <button onClick={handleStartTimer} className="ppt-btn-solid" style={{ flex: 1 }}>
+                            <Timer size={16} /> 30초 투표 시작
+                          </button>
                         )}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {(userId === "박재형_940721" || isTimerExpired) && (
-                  <div className="ppt-total-badge">
-                    참여 관객: {totalVotes1}명 / 실시간 투표 집계 중
+                        {timeLeft === 0 && !showResults && (
+                          <button onClick={() => setShowResults(true)} className="ppt-btn-solid" style={{ flex: 1, backgroundColor: '#e63946' }}>
+                            결과 발표하기
+                          </button>
+                        )}
+                        <button onClick={handleStartStage2} className="ppt-btn-solid" style={{ flex: 1, backgroundColor: '#b4925a' }}>
+                          다음으로 넘어가기
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                )}
+                ) : (
+                  // USER VIEW: Binary / card options style matching Stage 6/7/8
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                    {!isTimerRunning ? (
+                      <div style={{ padding: '15px', background: '#f5f0e6', borderRadius: '16px', color: '#755e22', fontWeight: '700', fontSize: '14px', marginBottom: '20px', width: '100%', maxWidth: '500px' }}>
+                        투표 시작을 기다리고 있습니다. 스크린을 주목해 주세요!
+                      </div>
+                    ) : isTimerExpired ? (
+                      <div style={{ padding: '15px', background: '#f5f0e6', borderRadius: '16px', color: '#8a8373', fontWeight: '700', fontSize: '14px', marginBottom: '20px', width: '100%', maxWidth: '500px' }}>
+                        투표가 마감되었습니다.
+                      </div>
+                    ) : null}
 
-                {/* Admin Controllers */}
-                {userId === "박재형_940721" && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '40px', borderTop: '1px dashed rgba(117, 94, 34, 0.2)', paddingTop: '30px', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', gap: '12px', width: '100%', maxWidth: '500px' }}>
-                      {!isTimerRunning && (
-                        <button onClick={handleStartTimer} className="ppt-btn-solid" style={{ flex: 1 }}>
-                          <Timer size={16} /> 30초 투표 시작
-                        </button>
-                      )}
-                      {timeLeft === 0 && !showResults && (
-                        <button onClick={() => setShowResults(true)} className="ppt-btn-solid" style={{ flex: 1, backgroundColor: '#e63946' }}>
-                          결과 발표하기
-                        </button>
-                      )}
-                      <button onClick={handleStartStage2} className="ppt-btn-solid" style={{ flex: 1, backgroundColor: '#b4925a' }}>
-                        다음으로 넘어가기
-                      </button>
+                    <div className="ppt-options-grid">
+                      {stage1Options.map((opt) => {
+                        const isSelected = myVote1Option === opt.id;
+                        const canVote = isVotingActive;
+                        return (
+                          <button
+                            key={opt.id}
+                            onClick={() => canVote && handleVoteStage1(opt.id)}
+                            disabled={!canVote}
+                            className={`ppt-card-btn ${isSelected ? 'selected' : ''}`}
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              background: isSelected ? '#755e22' : '#ffffff',
+                              color: isSelected ? '#ffffff' : '#2b2315',
+                              border: isSelected ? '2px solid #755e22' : '1px solid rgba(117, 94, 34, 0.1)',
+                              borderRadius: '24px',
+                              boxShadow: '0 8px 20px rgba(0,0,0,0.02)',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease',
+                              gap: '10px',
+                              padding: '25px 15px',
+                              minHeight: '130px'
+                            }}
+                          >
+                            <span style={{ fontSize: '26px', fontWeight: '950', color: isSelected ? '#ffffff' : '#755e22' }}>
+                              {opt.text}
+                            </span>
+                            {isSelected && (
+                              <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#ffffff', opacity: 0.9 }}>
+                                선택됨
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
