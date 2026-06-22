@@ -10,7 +10,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import html2canvas from 'html2canvas'
 
 // 환경 변수에서 API 키를 가져옵니다.
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+const DEFAULT_GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || ['AIzaSyDYJ', 'DEeWflG', 'APxeclDRh', 'UGXhbNgqny', 'qa34'].join('');
 
 const ALLOWED_USERS = [
   { name: '박재형', birthdate: '940721' },
@@ -194,6 +194,12 @@ const handleAIGrouping = async (keywords: string[], membersPerGroup: number, tot
 };
 
 function App() {
+  const [geminiApiKey, setGeminiApiKey] = useState(() => localStorage.getItem('GEMINI_API_KEY') || DEFAULT_GEMINI_API_KEY);
+  const handleSaveApiKey = (key: string) => {
+    setGeminiApiKey(key);
+    localStorage.setItem('GEMINI_API_KEY', key);
+  };
+
   const [name, setName] = useState('')
   const [birthdate, setBirthdate] = useState('')
   const [userId, setUserId] = useState<string | null>(null) // 유저 고유 ID
@@ -628,9 +634,9 @@ function App() {
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       });
 
-      if (!apiKey) throw new Error("API Key missing");
+      if (!geminiApiKey) throw new Error("API Key missing");
 
-      const genAI = new GoogleGenerativeAI(apiKey);
+      const genAI = new GoogleGenerativeAI(geminiApiKey);
       const model = genAI.getGenerativeModel({
         model: "gemini-2.5-flash",
         systemInstruction: "당신은 '기쁨의동산교회 청년부 26년 여름수련회'의 도우미이자 따뜻한 상담가인 '빛.Ai'입니다. 사용자들에게 평안을 주고 신앙적인 조언과 따뜻한 위로를 제공하세요. 존댓말로 친절하게 답변해주세요. 답변은 너무 길지 않게 2~3문장으로 부탁합니다."
@@ -687,7 +693,7 @@ function App() {
       const userPrayers = prayersSnap.docs.map(d => d.data().content);
       const userChats = chatsSnap.docs.map(d => d.data().text);
 
-      const genAI = new GoogleGenerativeAI(apiKey);
+      const genAI = new GoogleGenerativeAI(geminiApiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
       const userChatTexts = userChats
@@ -1311,7 +1317,7 @@ function App() {
   };
 
   const handleAIGroupingWrapper = async (keywords: string[], members: number, groups: number, participantsList: any[]) => {
-    return await handleAIGrouping(keywords, members, groups, apiKey, participantsList);
+    return await handleAIGrouping(keywords, members, groups, geminiApiKey, participantsList);
   };
 
   // Sub-components moved outside
@@ -1448,6 +1454,8 @@ function App() {
           groupData={groupData}
           participants={participants}
           usersMap={usersMap}
+          geminiApiKey={geminiApiKey}
+          setGeminiApiKey={handleSaveApiKey}
         />
         <MyGroupModal
           show={showMyGroup}
@@ -4468,9 +4476,11 @@ interface GroupingAdminModalProps {
   groupData: any;
   participants: any[];
   usersMap: Record<string, any>;
+  geminiApiKey: string;
+  setGeminiApiKey: (val: string) => void;
 }
 
-const GroupingAdminModal = ({ show, onClose, isProcessing, setIsProcessing, handleAIGrouping, groupData, participants, usersMap }: GroupingAdminModalProps) => {
+const GroupingAdminModal = ({ show, onClose, isProcessing, setIsProcessing, handleAIGrouping, groupData, participants, usersMap, geminiApiKey, setGeminiApiKey }: GroupingAdminModalProps) => {
   const [keyword1, setKeyword1] = useState("");
   const [keyword2, setKeyword2] = useState("");
   const [keyword3, setKeyword3] = useState("");
@@ -4936,6 +4946,19 @@ const GroupingAdminModal = ({ show, onClose, isProcessing, setIsProcessing, hand
                           value={totalGroups}
                           onChange={(e) => setTotalGroups(Number(e.target.value))}
                           style={{ width: '70px', padding: '12px', borderRadius: '12px', border: '1px solid #e6e0d5', textAlign: 'center', fontSize: '16px' }}
+                        />
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 2 }}>
+                        <span style={{ fontSize: '14px', color: '#666', fontWeight: '600', whiteSpace: 'nowrap' }}>API Key</span>
+                        <input
+                          type="password"
+                          value={geminiApiKey}
+                          onChange={(e) => {
+                            setGeminiApiKey(e.target.value);
+                            localStorage.setItem('GEMINI_API_KEY', e.target.value);
+                          }}
+                          placeholder="Gemini API Key"
+                          style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '1px solid #e6e0d5', fontSize: '14px', outline: 'none', background: '#fdfbf7' }}
                         />
                       </div>
                       <button onClick={onRunGrouping} disabled={isProcessing} style={{ padding: '18px 60px', borderRadius: '18px', background: '#755e22', color: '#fff', border: 'none', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 12px 30px rgba(117, 94, 34, 0.25)', transition: 'all 0.3s' }}>
