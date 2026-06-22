@@ -1267,7 +1267,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(117, 94, 34, 0.28);
+  background: #755e22;
   z-index: 1;
   transition: height 0.8s cubic-bezier(0.1, 0.8, 0.2, 1);
   pointer-events: none;
@@ -1276,7 +1276,7 @@ body {
 }
 
 .ppt-card-btn.selected .ppt-card-progress-fill {
-  background: rgba(117, 94, 34, 0.38);
+  background: #755e22;
 }
 
 /* Vote count pill badge below options */
@@ -1398,18 +1398,26 @@ body {
   .retreat-subtitle {
     font-size: 16px;
   }
+  .ppt-theater-container {
+    max-width: 1300px !important;
+    padding: 120px 48px 100px;
+  }
   .ppt-title {
-    font-size: 48px !important;
+    font-size: 64px !important;
   }
   .ppt-card-btn-text {
-    font-size: 32px !important;
+    font-size: 42px !important;
+  }
+  .ppt-card-btn {
+    padding: 60px 24px !important;
+    border-radius: 28px !important;
   }
   .ppt-vote-badge {
-    font-size: 16px !important;
-    padding: 8px 20px !important;
+    font-size: 18px !important;
+    padding: 10px 24px !important;
   }
   .ppt-subtitle {
-    font-size: 20px !important;
+    font-size: 24px !important;
   }
   .menu-card {
     border-radius: 32px;
@@ -1417,5 +1425,13 @@ body {
   .menu-card .icon {
     width: 48px !important;
     height: 48px !important;
+  }
+  /* Timer Circle size on desktop */
+  .ppt-timer-circle {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  .ppt-timer-value {
+    font-size: 54px !important;
   }
 }
