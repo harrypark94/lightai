@@ -2018,8 +2018,8 @@ function App() {
                 <div
                   className="pulsate-glow"
                   style={{
-                    width: '100px',
-                    height: '100px',
+                    width: userId === "박재형_940721" ? '160px' : '100px',
+                    height: userId === "박재형_940721" ? '160px' : '100px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -2029,19 +2029,19 @@ function App() {
                     marginBottom: '10px'
                   }}
                 >
-                  <Film size={40} color="white" />
+                  <Film size={userId === "박재형_940721" ? 70 : 40} color="white" />
                 </div>
 
                 <div style={{
                   position: 'relative',
-                  padding: '20px 60px',
-                  borderTop: '3px double #b4925a',
-                  borderBottom: '3px double #b4925a',
+                  padding: userId === "박재형_940721" ? '30px 100px' : '20px 60px',
+                  borderTop: userId === "박재형_940721" ? '5px double #b4925a' : '3px double #b4925a',
+                  borderBottom: userId === "박재형_940721" ? '5px double #b4925a' : '3px double #b4925a',
                   display: 'inline-block',
                   margin: '10px 0'
                 }}>
                   <h1 className="ppt-title" style={{
-                    fontSize: '96px',
+                    fontSize: userId === "박재형_940721" ? '130px' : '96px',
                     fontWeight: '950',
                     letterSpacing: '-2px',
                     color: '#2b2315',
@@ -2085,7 +2085,7 @@ function App() {
 
                 {/* Grid Options for Stage 1 */}
                 <div className="ppt-options-grid" style={{
-                  filter: (timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                  filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
                   transition: 'filter 0.5s'
                 }}>
                   {stage1Options.map((opt) => {
@@ -2169,7 +2169,7 @@ function App() {
                       maxWidth: '850px', 
                       margin: '30px auto', 
                       justifyContent: 'center',
-                      filter: (timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                      filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
                       transition: 'filter 0.5s'
                     }}>
                       {displayCandidates.length === 0 ? (
@@ -2394,7 +2394,7 @@ function App() {
                       width: '100%', 
                       maxWidth: '850px', 
                       margin: '30px auto',
-                      filter: (timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                      filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
                       transition: 'filter 0.5s'
                     }}>
                       {stage3Options.map((opt) => {
@@ -2694,7 +2694,7 @@ function App() {
                       width: '100%', 
                       maxWidth: '850px', 
                       margin: '30px auto',
-                      filter: (timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                      filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
                       transition: 'filter 0.5s'
                     }}>
                       {stage5Options.map((opt) => {
@@ -2845,7 +2845,7 @@ function App() {
                       width: '100%', 
                       maxWidth: '850px', 
                       margin: '30px auto',
-                      filter: (timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                      filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
                       transition: 'filter 0.5s'
                     }}>
                       {stage6Options.map((opt) => {
@@ -2996,7 +2996,7 @@ function App() {
                       width: '100%', 
                       maxWidth: '850px', 
                       margin: '30px auto',
-                      filter: (timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                      filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
                       transition: 'filter 0.5s'
                     }}>
                       {stage7Options.map((opt) => {
@@ -3147,7 +3147,7 @@ function App() {
                       width: '100%', 
                       maxWidth: '850px', 
                       margin: '30px auto',
-                      filter: (timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
+                      filter: (userId === "박재형_940721" && timeLeft !== null && timeLeft <= 5 && !showResults) ? 'blur(15px)' : 'none',
                       transition: 'filter 0.5s'
                     }}>
                       {stage8Options.map((opt) => {
@@ -3280,8 +3280,8 @@ function App() {
                 <div
                   className="pulsate-glow"
                   style={{
-                    width: '100px',
-                    height: '100px',
+                    width: userId === "박재형_940721" ? '160px' : '100px',
+                    height: userId === "박재형_940721" ? '160px' : '100px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -3291,23 +3291,23 @@ function App() {
                     marginBottom: '10px'
                   }}
                 >
-                  <Film size={40} color="white" />
+                  <Film size={userId === "박재형_940721" ? 70 : 40} color="white" />
                 </div>
 
                 <div style={{
                   position: 'relative',
-                  padding: '20px 60px',
-                  borderTop: '3px double #b4925a',
-                  borderBottom: '3px double #b4925a',
+                  padding: userId === "박재형_940721" ? '30px 100px' : '20px 60px',
+                  borderTop: userId === "박재형_940721" ? '5px double #b4925a' : '3px double #b4925a',
+                  borderBottom: userId === "박재형_940721" ? '5px double #b4925a' : '3px double #b4925a',
                   display: 'inline-block',
                   margin: '10px 0'
                 }}>
-                  <h1 style={{ fontSize: '42px', fontWeight: '950', color: '#755e22', letterSpacing: '8px', margin: 0, padding: 0 }}>
+                  <h1 style={{ fontSize: userId === "박재형_940721" ? '100px' : '42px', fontWeight: '950', color: '#755e22', letterSpacing: '8px', margin: 0, padding: 0 }}>
                     리얼선택 극장
                   </h1>
                 </div>
 
-                <div style={{ textAlign: 'center', color: '#2b2315', fontSize: '18px', fontWeight: '700', lineHeight: '1.8', whiteSpace: 'pre-line', marginTop: '10px' }}>
+                <div style={{ textAlign: 'center', color: '#2b2315', fontSize: userId === "박재형_940721" ? '28px' : '18px', fontWeight: '700', lineHeight: '1.8', whiteSpace: 'pre-line', marginTop: '10px' }}>
                   {userId === "박재형_940721"
                     ? "연극이 모두 성공적으로 끝났습니다.\n수고한 배우들과 참여해주신 모든 관객들께 박수를 보내주세요!"
                     : "연극이 모두 끝났습니다!\n오늘 함께해주셔서 대단히 감사합니다.\n\n수고해주신 주인공과 배우들에게 큰 박수를 부탁드립니다! 👏"}
